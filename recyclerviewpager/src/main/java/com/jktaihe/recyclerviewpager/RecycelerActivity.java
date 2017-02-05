@@ -1,4 +1,4 @@
-package com.jktaihe.maxdata;
+package com.jktaihe.recyclerviewpager;
 
 import android.os.Bundle;
 import android.support.v4.view.PagerAdapter;
@@ -11,14 +11,14 @@ import android.widget.ImageView;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MaxActivity extends AppCompatActivity{
+public class RecycelerActivity extends AppCompatActivity{
 
     private List<ImageView> imageViewList;
     private ViewPager mViewPager;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_max_main);
+        setContentView(R.layout.activity_recyceler_main);
         initView();
     }
 
@@ -29,7 +29,7 @@ public class MaxActivity extends AppCompatActivity{
         mViewPager.setAdapter(adapter);
         //设置ViewPager的默认项, 设置当前页位置，一开始才能往左滑动
         mViewPager.setCurrentItem(20);
-//        mViewPager.setOffscreenPageLimit(2);
+        mViewPager.setOffscreenPageLimit(2);
         mViewPager.setPageMargin(40);
     }
 

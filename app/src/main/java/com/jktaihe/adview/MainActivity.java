@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import com.jktaihe.expanddata.ExpandActivity;
 import com.jktaihe.maxdata.MaxActivity;
+import com.jktaihe.recyclerviewpager.RecycelerActivity;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -15,6 +16,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_main);
         findViewById(R.id.tv_expand).setOnClickListener(this);
         findViewById(R.id.tv_max).setOnClickListener(this);
+        findViewById(R.id.tv_recyceler).setOnClickListener(this);
     }
 
     @Override
@@ -25,6 +27,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             case R.id.tv_max:
                 startActivity(new Intent(this, MaxActivity.class));
+                break;
+            case R.id.tv_recyceler:
+                startActivity(new Intent(this, RecycelerActivity.class));
                 break;
         }
     }

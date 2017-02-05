@@ -11,6 +11,7 @@
             <option value="$PROJECT_DIR$/app" />
             <option value="$PROJECT_DIR$/expanddata" />
             <option value="$PROJECT_DIR$/maxdata" />
+            <option value="$PROJECT_DIR$/recyclerviewpager" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />

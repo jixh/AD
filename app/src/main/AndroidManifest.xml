@@ -17,6 +17,7 @@
         </activity>
         <activity android:name="com.jktaihe.expanddata.ExpandActivity"/>
         <activity android:name="com.jktaihe.maxdata.MaxActivity"/>
+        <activity android:name="com.jktaihe.recyclerviewpager.RecycelerActivity"/>
     </application>
 
 </manifest>

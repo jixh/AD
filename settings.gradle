@@ -1,1 +1,1 @@
-include ':app', ':expanddata', ':maxdata'
+include ':app', ':expanddata', ':maxdata', ':recyclerviewpager'
