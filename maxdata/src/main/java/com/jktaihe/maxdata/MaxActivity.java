@@ -28,9 +28,10 @@ public class MaxActivity extends AppCompatActivity{
         ViewPagerAdapter adapter = new ViewPagerAdapter();
         mViewPager.setAdapter(adapter);
         //设置ViewPager的默认项, 设置当前页位置，一开始才能往左滑动
-        mViewPager.setCurrentItem(20);
-//        mViewPager.setOffscreenPageLimit(2);
-        mViewPager.setPageMargin(40);
+        mViewPager.setCurrentItem(1000);
+        mViewPager.setOffscreenPageLimit(1);
+//        mViewPager.setPageMargin(40);
+        mViewPager.setPageTransformer(true,new MyTransformation());
     }
 
     private void prepareData() {
@@ -60,7 +61,7 @@ public class MaxActivity extends AppCompatActivity{
 
         @Override
         public int getCount() {
-            return 40;
+            return 2000;
         }
 
         @Override
@@ -75,20 +76,20 @@ public class MaxActivity extends AppCompatActivity{
         }
         public Object instantiateItem(ViewGroup container, int position) {
             //方案1
-//            View view = imageViewList.get(position % imageViewList.size());
-//            ViewGroup parent = (ViewGroup) view.getParent();
-//            if (parent != null) {
-//                parent.removeView(view);
-//            }
-//            container.addView(view,0);
-//            return view;
+            View view = imageViewList.get(position % imageViewList.size());
+            ViewGroup parent = (ViewGroup) view.getParent();
+            if (parent != null) {
+                parent.removeView(view);
+            }
+            container.addView(view,0);
+            return view;
 
             //方案2
-            if (container.getChildCount() == imageViewList.size()) {
-                container.removeView(imageViewList.get(position % imageViewList.size()));
-            }
-            container.addView(imageViewList.get(position% imageViewList.size()), 0);//添加页卡
-            return imageViewList.get(position% imageViewList.size());
+//            if (container.getChildCount() == imageViewList.size()) {
+//                container.removeView(imageViewList.get(position % imageViewList.size()));
+//            }
+//            container.addView(imageViewList.get(position% imageViewList.size()), 0);//添加页卡
+//            return imageViewList.get(position% imageViewList.size());
 
         }
     }
