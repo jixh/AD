@@ -18,6 +18,8 @@ public class ExpandActivity extends AppCompatActivity  implements ViewPager.OnPa
     private List<ImageView> imageViewList;
     private ViewPager mViewPager;
     private TextView mTextView;
+    private int position;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,13 +44,14 @@ public class ExpandActivity extends AppCompatActivity  implements ViewPager.OnPa
         if (imageResIDs.length == 1){
             addView(0);
         }else if (imageResIDs.length > 1){
-            for (int i = 0; i < imageResIDs.length +  2; i++) {
-                if (i == 0){
-                    addView(imageResIDs.length-1);
-                }else if (i == (imageResIDs.length +1)){
-                    addView(1);
-                }else {
-                    addView(i-1);
+            for (int i = 0; i < imageResIDs.length; i++) {
+                if (i == 0) {
+                    addView(imageResIDs.length - 1);
+                }
+                addView(i);
+                if (i == (imageResIDs.length - 1)) {
+                    addView(0);
+
                 }
             }
         }
@@ -73,6 +76,7 @@ public class ExpandActivity extends AppCompatActivity  implements ViewPager.OnPa
     }
 
     class ViewPagerAdapter extends PagerAdapter {
+
         @Override
         public int getCount() {
             return imageViewList.size();
@@ -106,7 +110,19 @@ public class ExpandActivity extends AppCompatActivity  implements ViewPager.OnPa
 
     @Override
     public void onPageScrollStateChanged(int arg0) {
+        if (imageViewList.size() > 1 && arg0 == 0) {
+            //多于1，才会循环跳转
+            if (position == 0) { //首位之前，跳转到末尾（N）
+                position = imageViewList.size() - 2;
+                mViewPager.setCurrentItem(position, false); //false:不显示跳转过程的动画
+            } else if (position == imageViewList.size() - 1) { //末位之后，跳转到首位（1）
+                position = 1;
+                mViewPager.setCurrentItem(position, false); //false:不显示跳转过程的动画
+            }
+            mTextView.setText("第" + position + "个引导页面");
+        }
     }
+
 
     @Override
     public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
@@ -114,35 +130,7 @@ public class ExpandActivity extends AppCompatActivity  implements ViewPager.OnPa
 
     @Override
     public void onPageSelected(int position) {
-//        if ( imageViewList.size() > 1) { //多于1，才会循环跳转
-//            if ( position == 0) { //首位之前，跳转到末尾（N）
-//                position = imageViewList.size()-2;
-//            } else if ( position == imageViewList.size()-1) { //末位之后，跳转到首位（1）
-//                position = 1;
-//            }
-//
-//            mViewPager.setCurrentItem(position,false); //false:不显示跳转过程的动画
-//            mTextView.setText("第" + position+ "个引导页面");
-//        }
-
-        if(position == 0){//首位扩展的item
-            //延迟执行才能看到动画
-            new Handler().postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    mViewPager.setCurrentItem(imageViewList.size()-2,false) ;//跳转到末位
-                }
-            }, 100) ;
-        }else if(position ==imageViewList.size()-1){//末位扩展的item
-            //延迟执行才能看到动画
-            new Handler().postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    mViewPager.setCurrentItem(1,false) ;//跳转到首位
-                }
-            }, 100) ;
-
-        }
+        this.position = position;
     }
 
     @Override
