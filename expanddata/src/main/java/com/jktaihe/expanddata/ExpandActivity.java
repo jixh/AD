@@ -1,7 +1,6 @@
 package com.jktaihe.expanddata;
 
 import android.os.Bundle;
-import android.os.Handler;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
@@ -35,7 +34,7 @@ public class ExpandActivity extends AppCompatActivity  implements ViewPager.OnPa
         ViewPagerAdapter adapter = new ViewPagerAdapter();
         mViewPager.setAdapter(adapter);
         mViewPager.setCurrentItem(1);
-        mViewPager.setOnPageChangeListener(this);
+        mViewPager.addOnPageChangeListener(this);
     }
 
     private void prepareData() {
@@ -112,10 +111,10 @@ public class ExpandActivity extends AppCompatActivity  implements ViewPager.OnPa
     public void onPageScrollStateChanged(int arg0) {
         if (imageViewList.size() > 1 && arg0 == 0) {
             //多于1，才会循环跳转
-            if (position == 0) { //首位之前，跳转到末尾（N）
+            if (position < 1) { //首位之前，跳转到末尾（N）
                 position = imageViewList.size() - 2;
                 mViewPager.setCurrentItem(position, false); //false:不显示跳转过程的动画
-            } else if (position == imageViewList.size() - 1) { //末位之后，跳转到首位（1）
+            } else if (position > imageViewList.size() - 2) { //末位之后，跳转到首位（1）
                 position = 1;
                 mViewPager.setCurrentItem(position, false); //false:不显示跳转过程的动画
             }

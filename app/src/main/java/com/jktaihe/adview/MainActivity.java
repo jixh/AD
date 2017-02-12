@@ -1,18 +1,20 @@
 package com.jktaihe.adview;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.view.Window;
+
 import com.jktaihe.expanddata.ExpandActivity;
 import com.jktaihe.maxdata.MaxActivity;
 import com.jktaihe.recyclerviewpager.RecycelerActivity;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+public class MainActivity extends Activity implements View.OnClickListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+        requestWindowFeature(Window.FEATURE_NO_TITLE);//去掉标题栏
         setContentView(R.layout.activity_main);
         findViewById(R.id.tv_expand).setOnClickListener(this);
         findViewById(R.id.tv_max).setOnClickListener(this);
