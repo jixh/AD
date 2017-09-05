@@ -14,3 +14,8 @@ viewpager实现，通过在目标数据前后各添加一个数据，滑动切�
 maxdata库：
 viewpager实现，通过设置count一个较大值，来模拟无线循环
 1)画廊效果缓存问题
+
+
+recyclerviewpager库:
+recyclerview + SnapHelper
+lttp://www.jianshu.com/p/e54db232df62
